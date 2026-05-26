@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Date;
 
@@ -16,8 +17,12 @@ public record TaskDTORequest(
 
     String description,
 
+    @NotNull(message = "El status no debe de ser nulo")
+    @DefaultValue("PENDING") //Toda tarea nueva debe crearse en estado PENDING. No se puede crear una tarea directamente en DONE o CANCELLED.
+    //no se podra eliminar tarea con status IN_PROGRESS o REVIEW
     Status status,
 
+    @NotNull(message = "La prioridad no debe de ser nula")
     Priority priority,
 
     @NotNull(message = "LAs horas estimadas no deben de ser nulas")
@@ -29,7 +34,7 @@ public record TaskDTORequest(
     int loggedHours,
 
     @NotNull(message = "La fecha de entrega no puede ser nula")
-    //tambien debe ser una fecha futura
+    //tambien debe ser una fecha futura a la creacion de lo contrario lanzar excepcion
     Date dueDate,
 
     @NotNull(message = "El campo asignado a no debe de ser nulo")

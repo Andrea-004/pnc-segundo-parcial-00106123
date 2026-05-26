@@ -8,8 +8,7 @@ public record TaskDTOResponse(
         int estimatedHours,
         int loggedHours,
         Date dueDate,
-        String assignedTo,
-        boolean active
+        String assignedTo
 ) {
 
 }

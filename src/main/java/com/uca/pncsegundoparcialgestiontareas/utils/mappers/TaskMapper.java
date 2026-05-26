@@ -26,8 +26,7 @@ public class TaskMapper {
                     task.getEstimatedHours(),
                     task.getLoggedHours(),
                     task.getDueDate(),
-                    task.getAssignedTo(),
-                    task.isActive()
+                    task.getAssignedTo()
             );
         }
 }
